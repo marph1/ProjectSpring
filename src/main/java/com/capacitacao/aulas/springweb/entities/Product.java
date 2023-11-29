@@ -1,6 +1,8 @@
 package com.capacitacao.aulas.springweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.aspectj.weaver.ast.Or;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,6 +22,8 @@ public class Product implements Serializable {
     private String description;
     private double price;
     private String imgUrl;
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
     @ManyToMany
     @JoinTable(
             name = "category_product",
@@ -77,6 +81,14 @@ public class Product implements Serializable {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+    @JsonIgnore
+    public Set<Order> getOrders(){
+        Set<Order> set = new HashSet<>();
+        for (OrderItem ot : items){
+            set.add(ot.getOrder());
+        }
+        return set;
     }
 
     public Set<Category> getCategories() {
