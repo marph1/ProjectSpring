@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "table_cat")
@@ -15,6 +17,9 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Transient
+    private Set<Product> products = new HashSet<>();
 
     public Category(String name) {
         this.name = name;
@@ -30,6 +35,11 @@ public class Category implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    @Transient
+    public Set<Product> getProducts() {
+        return products;
     }
 
     public void setName(String name) {

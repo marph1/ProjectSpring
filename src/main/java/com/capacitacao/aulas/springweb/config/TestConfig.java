@@ -2,10 +2,12 @@ package com.capacitacao.aulas.springweb.config;
 
 import com.capacitacao.aulas.springweb.entities.Category;
 import com.capacitacao.aulas.springweb.entities.Order;
+import com.capacitacao.aulas.springweb.entities.Product;
 import com.capacitacao.aulas.springweb.entities.User;
 import com.capacitacao.aulas.springweb.entities.enums.OrderStatus;
 import com.capacitacao.aulas.springweb.repositories.CategoryRepository;
 import com.capacitacao.aulas.springweb.repositories.OrderRepository;
+import com.capacitacao.aulas.springweb.repositories.ProductRepository;
 import com.capacitacao.aulas.springweb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +28,8 @@ public class TestConfig implements CommandLineRunner {
     private OrderRepository orderRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
 
     @Override
@@ -35,6 +39,14 @@ public class TestConfig implements CommandLineRunner {
         Category cat3 = new Category("Computers");
 
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
+        Product p1 = new Product("The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product p2 = new Product("Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product p3 = new Product("Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product p4 = new Product("PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product p5 = new Product("Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         User u1 = new User("Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User("Alex Green", "alex@gmail.com", "977777777", "123456");
