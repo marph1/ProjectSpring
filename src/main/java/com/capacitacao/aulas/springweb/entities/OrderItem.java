@@ -66,6 +66,9 @@ public class OrderItem implements Serializable {
     public double getPrice() {
         return price;
     }
+    public double getSubTotal(){
+        return price * quantity;
+    }
 
     @Override
     public boolean equals(Object o) {

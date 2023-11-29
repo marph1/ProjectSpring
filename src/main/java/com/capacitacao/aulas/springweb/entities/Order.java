@@ -32,6 +32,7 @@ public class Order implements Serializable {
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
+
     public Order(){
 
     }
@@ -101,6 +102,13 @@ public class Order implements Serializable {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+    public double getTotal(){
+        double sum = 0;
+        for (OrderItem ot : items) {
+            sum += ot.getSubTotal();
+        }
+        return sum;
     }
 
     @Override
