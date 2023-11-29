@@ -1,5 +1,6 @@
 package com.capacitacao.aulas.springweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
