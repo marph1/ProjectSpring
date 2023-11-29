@@ -23,6 +23,10 @@ public class Product implements Serializable {
     @Transient
     private Set<Category> categories = new HashSet<>();
 
+    public Product(){
+
+    }
+
     public Product(String name, String description, double price, String imgUrl) {
         this.name = name;
         this.description = description;
